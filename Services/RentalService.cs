@@ -9,12 +9,13 @@ namespace estudos_interface.Services
 
         public double PricePerDay { get; private set; }
 
-        private BrazilTaxService _brazilTax = new BrazilTaxService();
+        private ITaxService _taxService;
 
-        public RentalService(double pricePerHour, double pricePerDay)
+        public RentalService(double pricePerHour, double pricePerDay, ITaxService taxService)
         {
             PricePerHour = pricePerHour;
             PricePerDay = pricePerDay;
+            _taxService = taxService;
         }
 
         public void ProcessInvoice(CarRental carRental)
@@ -32,7 +33,7 @@ namespace estudos_interface.Services
                 basicpayment = PricePerDay * Math.Ceiling(duration.TotalDays);
             }
 
-            double tax = _brazilTax.Tax(basicpayment);
+            double tax = _taxService.Tax(basicpayment);
 
             carRental.inVoice = new InVoice(basicpayment, tax);
         }
