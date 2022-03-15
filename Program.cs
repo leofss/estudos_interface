@@ -22,7 +22,7 @@ namespace estudos_interface
             double day = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
 
-            RentalService rentalService = new RentalService(hour, day);
+            RentalService rentalService = new RentalService(hour, day, new BrazilTaxService());
             CarRental carRental = new CarRental(start, finsh, new Vehicle(model));
 
             rentalService.ProcessInvoice(carRental);

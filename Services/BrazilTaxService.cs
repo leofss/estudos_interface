@@ -1,7 +1,8 @@
 ﻿namespace estudos_interface.Services
 {
-    class BrazilTaxService
+    class BrazilTaxService : ITaxService
     {
+        //Tax pois na interface esta como Tax 
         public double Tax(double amount) 
         {
             if(amount <= 100.0)
